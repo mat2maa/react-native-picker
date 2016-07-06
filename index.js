@@ -8,14 +8,11 @@ import {
 	Animated,
 	Platform,
 	Dimensions,
-	PickerIOS
+	Picker
 } from 'react-native';
 
-import PickerAndroid from 'react-native-picker-android';
-
-let Picker = Platform.OS === 'ios' ? PickerIOS : PickerAndroid;
-let PickerItem = Picker.Item;
-let {width, height} = Dimensions.get('window');
+const Item = Picker.Item;
+const {width, height} = Dimensions.get('window');
 
 const longSide = width > height ? width : height;
 const shortSide = width > height ? height : width;
@@ -219,7 +216,7 @@ export default class PickerAny extends Component {
 							this.state.onValueChange(JSON.parse(JSON.stringify(this.pickedValue)), index);
 						}} >
 						{item.map((value, index) => (
-							<PickerItem
+							<Item
 								key={index}
 								value={value}
 								label={value.toString()}
@@ -304,7 +301,7 @@ export default class PickerAny extends Component {
 						this.state.onValueChange(JSON.parse(JSON.stringify(this.pickedValue)), 2);
 					}} >
 					{this.state.thirdWheelData.map((value, index) => (
-						<PickerItem
+						<Item
 							key={index}
 							value={index}
 							label={value.toString()}
@@ -345,7 +342,7 @@ export default class PickerAny extends Component {
 							this.refs.thirdWheel && this.refs.thirdWheel.moveTo && this.refs.thirdWheel.moveTo(0);
 						}} >
 						{this.state.firstWheelData.map((value, index) => (
-							<PickerItem
+							<Item
 								key={index}
 								value={value}
 								label={value.toString()}
